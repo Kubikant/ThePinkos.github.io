@@ -3,16 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kalendár</title>
+  <title>Single Page App</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Counter</h1>
-    <p>Count: <span id="count">0</span></p>
-    <button id="incrementBtn">Increment</button>
-  </div>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#" onclick="loadPage('home')">Home</a></li>
+        <li><a href="#" onclick="loadPage('about')">About</a></li>
+        <li><a href="#" onclick="loadPage('contact')">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
   
+  <div id="content">
+    <!-- Content will be dynamically loaded here -->
+  </div>
+
   <script src="main.js"></script>
 </body>
 </html>
