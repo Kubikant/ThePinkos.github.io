@@ -2,6 +2,7 @@
   "name": "kubreact",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://tomaskubik.me/index.html",
   "type": "module",
   "scripts": {
     "dev": "vite",
