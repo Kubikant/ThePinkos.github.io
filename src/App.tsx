@@ -1,8 +1,11 @@
-import Den from "./components/Den";
-import Kalendar from "./components/Kalendar";
+import Calendar from "./Calendar";
 
 function App() {
-  return <Kalendar year={2024} />;
+  return (
+    <>
+      <Calendar />
+    </>
+  );
 }
 
 export default App;
