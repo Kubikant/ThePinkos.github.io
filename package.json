@@ -1,7 +1,7 @@
 {
   "name": "kalendar",
   "version": "0.0.0",
-  "homepage": "https://tomaskubik.me/",
+  "homepage": "https://tomaskubik.me/index.html",
   "private": true,
   "type": "module",
   "scripts": {
