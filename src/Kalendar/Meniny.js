@@ -359,7 +359,7 @@ export function meniny(pocetDni) {
     'Adela',
     'Nadežda, Naďa',
     'Adam, Eva',
-    '',
+    'test',
     'Štefan',
     'Filoména',
     'Ivana, Ivona',
