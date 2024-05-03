@@ -15,6 +15,6 @@ export default defineConfig({
   build: {
     emptyOutDir: true,
     copyPublicDir: true,
-    exclude: ['fotky CNAME']
+    exclude: ['fotky CNAME 404.html']
   }
 })
