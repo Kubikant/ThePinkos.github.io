@@ -212,13 +212,13 @@ export default {
 .tyzden_info .div1 {
   background-color: #051650;
   padding: 0.3mm 10mm 0.6mm 10mm;
-  border-radius: 0.7mm;
+  border-radius: 1mm;
   min-width: 5.5cm;
 }
 .tyzden_info .div2 {
   background-color: #051650;
   padding: 0.3mm 2mm 0.6mm 2mm;
-  border-radius: 0.7mm;
+  border-radius: 1mm;
   min-width: 3cm;
 }
 
