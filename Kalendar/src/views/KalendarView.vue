@@ -8,3 +8,9 @@ const count = ref(0)
   {{ count }}
   <button @click="count++">Count</button>
 </template>
+
+<style>
+:root {
+  background-color: rgb(59, 71, 71);
+}
+</style>
