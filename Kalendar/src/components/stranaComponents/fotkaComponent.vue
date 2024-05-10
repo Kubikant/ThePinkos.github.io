@@ -1,9 +1,6 @@
 <template>
   <div class="fotka">
-    <img
-      src="C:\Users\Tomáš\OneDrive\Dokumenty\GitHub\ThePinkos.github.io\Kalendar\src\assets\fotka.jpg"
-      alt="fotka"
-    />
+    <img src="https://tomaskubik.me/fotky/4.jpg" alt="fotka" />
   </div>
 </template>
 

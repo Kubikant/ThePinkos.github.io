@@ -4,7 +4,7 @@ defineProps(['cisloDna', 'mesiac', 'rok', 'menoDna', 'index'])
 
 <template>
   <div class="den">
-    <div class="datum" :style="{ borderBottom: index === 6 ? 'white 1mm solid' : undefined }">
+    <div class="datum" :style="{ borderBottom: index === 6 ? 'inherit 1mm solid' : undefined }">
       {{ cisloDna }}
     </div>
     <div class="info" :style="{ borderBottom: index === 5 ? '0' : undefined }">

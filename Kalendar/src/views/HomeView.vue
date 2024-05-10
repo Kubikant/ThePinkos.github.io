@@ -3,5 +3,15 @@ import stranaComponent from '@/components/stranaComponent.vue'
 </script>
 
 <template>
-  <stranaComponent />
+  <div class="kalendar">
+    <stranaComponent />
+  </div>
 </template>
+
+<style>
+.kalendar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 297mm;
+}
+</style>

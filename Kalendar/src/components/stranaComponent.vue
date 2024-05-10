@@ -8,8 +8,19 @@ const days = ref(calendarArray)
 </script>
 
 <template>
+  <div class="strana uvodna">{{ days[28].year }}</div>
   <!-- Rozdel strany na 7 dni -->
-  <div class="strana" v-for="strana in Math.ceil(days.length / 7)" :key="strana">
+  <div
+    class="strana"
+    v-for="strana in Math.ceil(days.length / 7)"
+    :key="strana"
+    :style="{
+      gridColumn: strana <= 27 ? 1 : 2,
+      gridRow: strana <= 27 ? strana : strana - 27,
+      borderRight: strana <= 27 ? '1px dotted #b4b4b4' : 'none',
+      borderLeft: strana > 27 ? '1px dotted #b4b4b4' : 'none'
+    }"
+  >
     <!-- Fotka -->
     <fotkaComponent />
 
@@ -41,6 +52,17 @@ const days = ref(calendarArray)
 </template>
 
 <style>
+.uvodna {
+  font-family: system-ui;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  font-size: 400%;
+  font-weight: bold;
+
+  border-right: 1px dotted #b4b4b4;
+}
+
 .strana {
   background-color: white;
 
@@ -48,6 +70,7 @@ const days = ref(calendarArray)
 
   padding: 20mm 10mm 0 10mm;
   width: 148.5mm;
+  height: 39cm;
 }
 
 .tyzden_info {
@@ -85,6 +108,8 @@ const days = ref(calendarArray)
 .poznamky {
   margin-top: 3mm;
   border-top: 0.6mm dashed #b4b4b4;
+
+  page-break-after: always;
 }
 .poznamky img {
   width: 6mm;
