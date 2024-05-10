@@ -31,7 +31,6 @@ const days = ref(calendarArray)
       </div>
       <div class="cisloTyzdna">{{ days[(strana - 1) * 7].week }}. týždeň</div>
     </div>
-
     <!-- Dni -->
     <denComponent
       v-for="(day, index) in days.slice(strana * 7 - 7, strana * 7)"
