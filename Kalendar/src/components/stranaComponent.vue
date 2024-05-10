@@ -2,18 +2,93 @@
 import { ref } from 'vue'
 import { calendarArray } from '@/assets/logika.js'
 import denComponent from './stranaComponents/denComponent.vue'
+import fotkaComponent from './stranaComponents/fotkaComponent.vue'
 
 const days = ref(calendarArray)
 </script>
 
 <template>
-  <p>{{ calendarArray[1] }}</p>
-  <denComponent
-    v-for="day in days"
-    :key="day.id"
-    :cisloDna="day.date"
-    :mesiac="day.month"
-    :rok="day.year"
-    :menoDna="day.dayName"
-  />
+  <!-- Rozdel strany na 7 dni -->
+  <div class="strana" v-for="strana in Math.ceil(days.length / 7)" :key="strana">
+    <!-- Fotka -->
+    <fotkaComponent />
+
+    <!-- Informacie o tyzdni -->
+    <div class="tyzden_info">
+      <div class="mesiacARok">
+        {{ days[(strana - 1) * 7].month }} {{ days[(strana - 1) * 7].year }}
+      </div>
+      <div class="cisloTyzdna">{{ days[(strana - 1) * 7].week }}. týždeň</div>
+    </div>
+
+    <!-- Dni -->
+    <denComponent
+      v-for="(day, index) in days.slice(strana * 7 - 7, strana * 7)"
+      :key="index"
+      :cisloDna="day.date"
+      :mesiac="day.month"
+      :rok="day.year"
+      :menoDna="day.dayName"
+      :class="{ vikend: index === 5 || index === 6 }"
+      :index="index"
+    />
+
+    <!-- Poznamky -->
+    <div class="poznamky">
+      <img src="@/assets/pero.svg" alt="Mala by tu byt fotka" />
+    </div>
+  </div>
 </template>
+
+<style>
+.strana {
+  background-color: white;
+
+  font-family: system-ui;
+
+  padding: 20mm 10mm 0 10mm;
+  width: 148.5mm;
+}
+
+.tyzden_info {
+  font-size: 0.5cm;
+  color: white;
+
+  font-weight: bold;
+  letter-spacing: 0.3mm;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 0.3cm;
+  margin-bottom: 0.3cm;
+  padding-top: 4.5mm;
+  border-top: 0.6mm dashed #b4b4b4;
+
+  text-align: center;
+}
+
+.tyzden_info .mesiacARok {
+  background-color: #051650;
+  padding: 0.3mm 10mm 0.6mm 10mm;
+  border-radius: 1mm;
+  min-width: 5.5cm;
+}
+.tyzden_info .cisloTyzdna {
+  background-color: #051650;
+  padding: 0.3mm 2mm 0.6mm 2mm;
+  border-radius: 1mm;
+  min-width: 3cm;
+}
+
+.poznamky {
+  margin-top: 3mm;
+  border-top: 0.6mm dashed #b4b4b4;
+}
+.poznamky img {
+  width: 6mm;
+  margin: 1.5mm;
+  opacity: 0.5;
+}
+</style>

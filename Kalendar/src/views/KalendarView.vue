@@ -10,7 +10,13 @@ const count = ref(0)
 </template>
 
 <style>
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 :root {
-  background-color: rgb(59, 71, 71);
+  background-color: rgb(255, 255, 255);
 }
 </style>
