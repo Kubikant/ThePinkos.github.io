@@ -41,6 +41,7 @@ const days = ref(calendarArray)
       :mesiac="day.month"
       :rok="day.year"
       :menoDna="day.dayName"
+      :meniny="day.nameDay"
       :class="{ vikend: index === 5 || index === 6 }"
       :index="index"
     />

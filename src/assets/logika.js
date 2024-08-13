@@ -1,5 +1,6 @@
-const year = 2024
+const year = 2023
 export const calendarArray = []
+import namedays from './meniny.json';
 
 //Zisti ci je rok prestupny a vrati 366 alebo 365
 const dayCount = () => {
@@ -21,6 +22,8 @@ const getWeekNumber = (date) => {
   const weekNumber = Math.ceil(((+date - +yearStart) / 86400000 + 1) / 7)
   return weekNumber
 }
+
+
 
 // Vygeneruj pre kazdy den v roku objekt s datumom, cislom dna v roku, nazvom dna, nazvom mesiaca a cislom tyzdna v roku
 for (let day = 1 - pocetDniDoZadu; day <= dayCount() + pocetDniDoPredu; day++) {
@@ -47,7 +50,10 @@ for (let day = 1 - pocetDniDoZadu; day <= dayCount() + pocetDniDoPredu; day++) {
       .replace(/^\p{L}/u, (c) => c.toUpperCase()),
 
     //Cislo tyzdna v roku
-    week: getWeekNumber(new Date(year, 0, day))
+    week: getWeekNumber(new Date(year, 0, day)),
+
+    //Meniny
+    nameDay: namedays[new Date(year, 0, day).toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' })],
   })
 }
 

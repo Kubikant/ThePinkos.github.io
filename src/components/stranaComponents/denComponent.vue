@@ -1,5 +1,5 @@
 <script setup>
-defineProps(['cisloDna', 'mesiac', 'rok', 'menoDna', 'index'])
+defineProps(['cisloDna', 'mesiac', 'rok', 'menoDna', 'index', 'meniny'])
 </script>
 
 <template>
@@ -8,7 +8,7 @@ defineProps(['cisloDna', 'mesiac', 'rok', 'menoDna', 'index'])
       {{ cisloDna }}
     </div>
     <div class="info" :style="{ borderBottom: index === 5 ? '0' : undefined }">
-      {{ menoDna }}
+      {{ menoDna }} -- {{ meniny }}
     </div>
   </div>
 </template>
