@@ -1,6 +1,6 @@
 <template>
   <div class="fotka">
-    <img src="https://tomaskubik.me/fotky/4.jpg" alt="fotka" />
+    <img src="/src/assets/test.jpeg" alt="fotka" />
   </div>
 </template>
 

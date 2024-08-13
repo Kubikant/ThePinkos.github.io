@@ -8,7 +8,9 @@ const days = ref(calendarArray)
 </script>
 
 <template>
-  <div class="strana uvodna">{{ days[28].year }}</div>
+  <!-- Uvodna strana -->
+  <div class="strana uvodna">{{ days[20].year }}</div>
+
   <!-- Rozdel strany na 7 dni -->
   <div
     class="strana"
@@ -16,7 +18,7 @@ const days = ref(calendarArray)
     :key="strana"
     :style="{
       gridColumn: strana <= 27 ? 1 : 2,
-      gridRow: strana <= 27 ? strana : strana - 27,
+      gridRow: strana <= 27 ? strana + 1 : strana - 27,
       borderRight: strana <= 27 ? '1px dotted #b4b4b4' : 'none',
       borderLeft: strana > 27 ? '1px dotted #b4b4b4' : 'none'
     }"

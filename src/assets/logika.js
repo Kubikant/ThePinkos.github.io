@@ -22,7 +22,7 @@ const getWeekNumber = (date) => {
   return weekNumber
 }
 
-// Generate an array with objects for each day in the year
+// Vygeneruj pre kazdy den v roku objekt s datumom, cislom dna v roku, nazvom dna, nazvom mesiaca a cislom tyzdna v roku
 for (let day = 1 - pocetDniDoZadu; day <= dayCount() + pocetDniDoPredu; day++) {
   calendarArray.push({
     //Rok

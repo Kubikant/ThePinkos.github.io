@@ -13,5 +13,7 @@ import stranaComponent from '@/components/stranaComponent.vue'
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 297mm;
+
+  margin: 0 auto;
 }
 </style>
