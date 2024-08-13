@@ -70,6 +70,8 @@ const days = ref(calendarArray)
   padding: 20mm 10mm 0 10mm;
   width: 148.5mm;
   height: 39cm;
+
+  page-break-after: always;
 }
 
 .tyzden_info {
@@ -107,8 +109,6 @@ const days = ref(calendarArray)
 .poznamky {
   margin-top: 3mm;
   border-top: 0.6mm dashed #b4b4b4;
-
-  page-break-after: always;
 }
 .poznamky img {
   width: 6mm;
