@@ -11,6 +11,8 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "easter-date": "^0.0.13",
+    "suncalc": "^1.9.0",
     "vue": "^3.4.37",
     "vue-router": "^4.4.3"
   },

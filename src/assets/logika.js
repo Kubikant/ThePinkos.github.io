@@ -1,5 +1,6 @@
-const year = 2023
+const year = 2024
 export const calendarArray = []
+import SunCalc from 'suncalc'
 import namedays from './meniny.json';
 
 //Zisti ci je rok prestupny a vrati 366 alebo 365
@@ -23,7 +24,26 @@ const getWeekNumber = (date) => {
   return weekNumber
 }
 
+//Zisti vychod, stred, zapad slnka
+const slnkoCalc = (date) => {
+  var zemSirka = 49.2231
+  var zemDlzka = 18.7394
 
+  // Get today's date
+  const today = new Date(date)
+
+  // Calculate sunrise, solar noon, and sunset
+  const sunTimes = SunCalc.getTimes(today, zemSirka, zemDlzka)
+
+  // Format the times in the Bratislava timezone (CET)
+  const formatTime = (date) => date.toLocaleTimeString('sk-SK', { hour: 'numeric', minute: '2-digit', hour12: false, timeZone: 'Europe/Bratislava' })
+
+  const sunrise = formatTime(sunTimes.sunrise)
+  const solarNoon = formatTime(sunTimes.solarNoon)
+  const sunset = formatTime(sunTimes.sunset)
+
+  return [sunrise, solarNoon, sunset]
+}
 
 // Vygeneruj pre kazdy den v roku objekt s datumom, cislom dna v roku, nazvom dna, nazvom mesiaca a cislom tyzdna v roku
 for (let day = 1 - pocetDniDoZadu; day <= dayCount() + pocetDniDoPredu; day++) {
@@ -48,6 +68,9 @@ for (let day = 1 - pocetDniDoZadu; day <= dayCount() + pocetDniDoPredu; day++) {
     month: new Date(year, 0, day)
       .toLocaleDateString('sk-SK', { month: 'long' })
       .replace(/^\p{L}/u, (c) => c.toUpperCase()),
+
+    //Vychod, stred, zapad slnka
+    sun: slnkoCalc(new Date(year, 0, day)).join(' '),
 
     //Cislo tyzdna v roku
     week: getWeekNumber(new Date(year, 0, day)),

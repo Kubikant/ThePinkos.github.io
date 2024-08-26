@@ -1,5 +1,6 @@
 <script setup>
-defineProps(['cisloDna', 'mesiac', 'rok', 'menoDna', 'index', 'meniny'])
+defineProps(['cisloDna', 'mesiac', 'rok', 'menoDna', 'index', 'meniny', 'denVRoku', 'slnko'])
+import {getGoodFriday, getEasterMonday} from 'easter-date';
 </script>
 
 <template>
@@ -8,7 +9,10 @@ defineProps(['cisloDna', 'mesiac', 'rok', 'menoDna', 'index', 'meniny'])
       {{ cisloDna }}
     </div>
     <div class="info" :style="{ borderBottom: index === 5 ? '0' : undefined }">
-      {{ menoDna }} -- {{ meniny }}
+      <div class="menoDna">{{ menoDna }}</div>
+      <div class="meniny">{{ meniny }}</div>
+      <div class="denVRoku">{{ denVRoku }}</div>
+      <div class="slnko"> {{ slnko }}</div>
     </div>
   </div>
 </template>
@@ -54,5 +58,55 @@ defineProps(['cisloDna', 'mesiac', 'rok', 'menoDna', 'index', 'meniny'])
 
   font-size: 65%;
   line-height: 4mm;
+
+  display: grid;
+  grid-template-columns: 22% 68% 10%;
+  grid-template-rows: 23% 52% 25%;
+  max-width: 100%;
+}
+.menoDna {
+  color: #313131;
+  padding-top: 0.24em;
+  padding-left: 0.2em;
+  font-size: 172%;
+  font-weight: 700;
+}
+.denVRoku {
+  grid-column: 3;
+  text-align: right;
+  font-weight: bold;
+  color: #313131;
+  padding-right: 1mm;
+}
+.meniny {
+  padding-left: 0.4em;
+  font-size: 145%;
+  font-weight: 350;
+  font-style: italic;
+
+  grid-row: 2;
+  grid-column: 1;
+}
+.slnko {
+  display: grid;
+  grid-row: 2/4;
+  grid-column: 3;
+  justify-self: right;
+  align-self: self-end;
+
+  text-align: right;
+
+  height: min-content;
+  width: min-content;
+
+  padding: 1mm;
+  margin: 0 0.5mm 0.5mm 0;
+  border-radius: 1mm;
+
+  color: #000000;
+  font-weight: 500;
+  line-height: 4mm;
+  font-size: 110%;
+  background-image: linear-gradient(180deg, #c21d00 -10%, #fffb00 35% 70%, #0a2000 120%);
 }
 </style>
