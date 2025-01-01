@@ -44,6 +44,7 @@ const days = ref(calendarArray)
       :menoDna="day.dayName"
       :slnko="day.sun"
       :meniny="day.nameDay"
+      :naseSviatky="day.naseSviatky"
       :class="{ vikend: index === 5 || index === 6 }"
       :index="index"
     />
@@ -73,7 +74,7 @@ const days = ref(calendarArray)
   font-family: system-ui;
 
   padding: 20mm 10mm 0 10mm;
-  width: 148.5mm;
+  max-width: 148.5mm;
   height: 39cm;
 
   page-break-after: always;

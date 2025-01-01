@@ -1,6 +1,5 @@
 <script setup>
-defineProps(['cisloDna', 'mesiac', 'rok', 'menoDna', 'index', 'meniny', 'denVRoku', 'slnko'])
-import {getGoodFriday, getEasterMonday} from 'easter-date';
+defineProps(['cisloDna', 'mesiac', 'rok', 'menoDna', 'index', 'meniny', 'denVRoku', 'slnko', 'naseSviatky'])
 </script>
 
 <template>
@@ -12,7 +11,27 @@ import {getGoodFriday, getEasterMonday} from 'easter-date';
       <div class="menoDna">{{ menoDna }}</div>
       <div class="meniny">{{ meniny }}</div>
       <div class="denVRoku">{{ denVRoku }}</div>
-      <div class="slnko"> {{ slnko }}</div>
+      <div class="slnko">{{ slnko }}</div>
+      <div class="naseSviatky">
+        <div class="statneSviatky">
+          {{ naseSviatky?.statneSviatky }}
+        </div>
+        <div class="vyrociaSvadby">
+          {{ naseSviatky?.vyrociaSvadby }}
+        </div>
+        <div class="umrtia">
+          {{ naseSviatky?.umrtia }}
+        </div>
+        <div class="narodeninyMeniny">
+          {{ naseSviatky?.narodeninyMeniny }}
+        </div>
+        <div class="medzDni">
+          {{ naseSviatky?.medzDni }}
+        </div>
+        <div class="slnovraty">
+          {{ naseSviatky?.slnovraty }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -58,6 +77,8 @@ import {getGoodFriday, getEasterMonday} from 'easter-date';
 
   font-size: 65%;
   line-height: 4mm;
+
+  overflow: hidden;
 
   display: grid;
   grid-template-columns: 22% 68% 10%;
@@ -108,5 +129,49 @@ import {getGoodFriday, getEasterMonday} from 'easter-date';
   line-height: 4mm;
   font-size: 110%;
   background-image: linear-gradient(180deg, #c21d00 -10%, #fffb00 35% 70%, #0a2000 120%);
+}
+
+.naseSviatky {
+  grid-row: 1/3;
+  grid-column: 2;
+}
+.naseSviatky > * {
+
+  padding: 0.8mm 1.5mm;
+  border-radius: 1mm;
+  margin-top: 0.5mm;
+
+  max-width: 7.1cm;
+  width: max-content;
+  display: block;
+  clear: right;
+}
+.naseSviatky > *:empty {
+  display: none;
+}
+
+.statneSviatky {
+  background-color: #e21414;
+  color: white;
+}
+.vyrociaSvadby {
+  background-color: #0070c0;
+  color: #fff200;
+}
+.umrtia {
+  background-color: #313131;
+  color: white;
+}
+.narodeninyMeniny {
+  background-color: #fff200;
+  color: #313131;
+}
+.medzDni {
+  background-color: #d89400;
+  color: white;
+}
+.slnovraty {
+  background-color: #8d8d8d;
+  color: white;
 }
 </style>
