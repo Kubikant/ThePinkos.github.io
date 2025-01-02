@@ -93,6 +93,28 @@ const getNaseSviatky = (date) => {
   return (Object.keys(sviatky).length === 0) ? undefined : sviatky
 }
 
+const getHolidays = (date) => {
+  for (let range in nasesviatky["prazdniny"]) {
+    let [start, end] = range.split('-')
+    if (isDateInRange(date, start, end)) {
+      return nasesviatky["prazdniny"][range]
+    }
+  }
+  return undefined
+}
+//Neviem jak to funguje AI
+const isDateInRange = (date, start, end) => {
+  const [day, month] = date.split('/').map(Number)
+  const [startDay, startMonth] = start.split('/').map(Number)
+  const [endDay, endMonth] = end.split('/').map(Number)
+
+  const dateObj = new Date(2000, month - 1, day)
+  const startDate = new Date(2000, startMonth - 1, startDay)
+  const endDate = new Date(2000, endMonth - 1, endDay)
+
+  return dateObj >= startDate && dateObj <= endDate
+}
+
 // Vygeneruj Array s objektami pre kazdy den v roku s datumom, cislom dna v roku, nazvom dna, nazvom mesiaca a cislom tyzdna v roku
 for (let day = 1 - pocetDniDoZadu; day <= dayCount() + pocetDniDoPredu; day++) {
   calendarArray.push({
@@ -125,7 +147,10 @@ for (let day = 1 - pocetDniDoZadu; day <= dayCount() + pocetDniDoPredu; day++) {
     nameDay: namedays[new Date(year, 0, day).toLocaleDateString('en-UK', { month: '2-digit', day: '2-digit' })],
     
     //Nase sviatky (meniny, narodeniny, medz. dni atd.)
-    naseSviatky: getNaseSviatky(new Date(year, 0, day).toLocaleDateString('en-UK', { month: '2-digit', day: '2-digit' }))
+    naseSviatky: getNaseSviatky(new Date(year, 0, day).toLocaleDateString('en-UK', { month: '2-digit', day: '2-digit' })),
+
+    //Prazdniny
+    holidays: getHolidays(new Date(year, 0, day).toLocaleDateString('en-UK', { month: '2-digit', day: '2-digit' }))
   })
 }
 

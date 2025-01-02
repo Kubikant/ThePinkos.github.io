@@ -1,7 +1,6 @@
 <script setup>
-defineProps(['cisloDna', 'mesiac', 'rok', 'menoDna', 'index', 'meniny', 'denVRoku', 'slnko', 'naseSviatky'])
+defineProps(['cisloDna', 'mesiac', 'rok', 'menoDna', 'index', 'meniny', 'denVRoku', 'slnko', 'naseSviatky', 'prazdniny'])
 </script>
-
 <template>
   <div class="den">
     <div class="datum" :style="{ borderBottom: index === 6 ? 'white 1mm solid' : undefined, backgroundColor: naseSviatky?.statneSviatky !== undefined ? '#e21414' : undefined }">
@@ -12,6 +11,7 @@ defineProps(['cisloDna', 'mesiac', 'rok', 'menoDna', 'index', 'meniny', 'denVRok
       <div class="meniny">{{ meniny }}</div>
       <div class="denVRoku">{{ denVRoku }}</div>
       <div class="slnko">{{ slnko }}</div>
+      <div class="prazdniny">{{ prazdniny }}</div>
       <div class="naseSviatky">
         <div class="statneSviatky">
           {{ naseSviatky?.statneSviatky }}
@@ -130,6 +130,23 @@ defineProps(['cisloDna', 'mesiac', 'rok', 'menoDna', 'index', 'meniny', 'denVRok
   font-size: 110%;
   background-image: linear-gradient(180deg, #c21d00 -10%, #fffb00 35% 70%, #0a2000 120%);
 }
+.prazdniny {
+  grid-row: 3;
+  grid-column: 1/3;
+  background-color: rgb(1, 168, 1);
+  color: white;
+
+  padding: 0.8mm 1.5mm;
+  border-radius: 1mm;
+  margin: auto 0 0.5mm 0.5mm;
+  height: 1rem;
+  width: max-content;
+  display: block;
+  clear: right;
+}
+.prazdniny:empty {
+  display: none;
+}
 
 .naseSviatky {
   grid-row: 1/3;
@@ -156,7 +173,7 @@ defineProps(['cisloDna', 'mesiac', 'rok', 'menoDna', 'index', 'meniny', 'denVRok
 }
 .vyrociaSvadby {
   background-color: #0070c0;
-  color: #fff200;
+  color: white;
 }
 .umrtia {
   background-color: #313131;

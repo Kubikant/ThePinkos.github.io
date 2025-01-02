@@ -45,6 +45,7 @@ const days = ref(calendarArray)
       :slnko="day.sun"
       :meniny="day.nameDay"
       :naseSviatky="day.naseSviatky"
+      :prazdniny="day.holidays"
       :class="{ vikend: index === 5 || index === 6 }"
       :index="index"
     />

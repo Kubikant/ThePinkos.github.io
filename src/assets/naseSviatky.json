@@ -82,8 +82,6 @@
 },
 "vyrociaSvadby": {
     "08/02": "Anton Kubík st. a Janka Kubíková - výročie svadby (1975)",
-    "23/04": "Anton Kubík ml. a Zuzana Kubíková - výročie svadby (2014)",
-    "30/04": "Zdenko Kubík a Zuzana Michalidesová Kubíková - výročie svadby (2011)",
     "09/09": "Branislav Kubík a Ildikó Kubíková - výročie svadby (2000)"
 },
 "medzDni": {
@@ -101,6 +99,15 @@
     "23/09": "Jesenná rovnodennosť",
     "26/10": "Zmena času (3:00-2:00)",
     "21/12": "Zimný slnovrat"
+},
+"prazdniny": {
+    "01/01-07/01": "Vianočné prázdniny",
+    "17/02-21/02": "Jarné prázdniny (KE, PO)",
+    "24/02-28/02": "Jarné prázdniny (BA, NR, TN)",
+    "03/03-07/03": "Jarné prázdniny (BB, ZA, TN)",
+    "17/04-22/04": "Veľkonočné prázdniny",
+    "30/06-28/08": "Letné prázdniny",    
+    "30/10-31/10": "Jesenné prázdniny",    
+    "22/12-31/12": "Vianočné prázdniny"
 }
-
 }
