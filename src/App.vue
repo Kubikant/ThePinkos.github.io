@@ -70,7 +70,7 @@ const downloadJson = () => {
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
   a.href = url
-  a.download = 'calendar.json'
+  a.download = 'kalendar.json'
   a.click()
   URL.revokeObjectURL(url)
 }
