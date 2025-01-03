@@ -13,6 +13,8 @@ dist-ssr
 coverage
 *.local
 
+/src/assets/naseSviatky.json
+/src/assets/starkaSviatky.json
 /cypress/videos/
 /cypress/screenshots/
 

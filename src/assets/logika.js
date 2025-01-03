@@ -1,9 +1,9 @@
+import { ref } from 'vue'
 import SunCalc from 'suncalc'
 import namedays from './meniny.json'
-import nasesviatky from './naseSviatky.json'
+import info from './data.json'
 
 const year = 2025
-export const calendarArray = []
 
 //Zisti rok, ak sa meni v jednom v tyzdni daj do formatu 24/2025
 const getYearNumber = (date) => {
@@ -79,29 +79,48 @@ const slnkoCalc = (date) => {
 }
 
 //Vrati sviatky v ten den
-const getNaseSviatky = (date) => {
-  let sviatky = {}
+const getSviatky = (date, sviatky) => {
+  date = date.toLocaleDateString('en-UK', { month: '2-digit', day: '2-digit' })
+  let s = {}
 
-  for (let i in nasesviatky) {
-    for (let j in nasesviatky[i]) {
+  for (let i in sviatky) {
+    for (let j in sviatky[i]) {
       if (j == date) {
-        sviatky[i] = nasesviatky[i][j]
+        s[i] = sviatky[i][j]
       }
     }
   }
 
-  return (Object.keys(sviatky).length === 0) ? undefined : sviatky
+  return (Object.keys(s).length === 0) ? undefined : s
+}
+
+const getData = (date) => {
+  date = date.toLocaleDateString('en-UK', { month: '2-digit', day: '2-digit' })
+  let d = {}
+
+  for (let i in info) {
+    for (let j in info[i]) {
+      if (j == date) {
+        d[i] = info[i][j]
+      }
+    }
+  }
+
+  return (Object.keys(d).length === 0) ? undefined : d
 }
 
 const getHolidays = (date) => {
-  for (let range in nasesviatky["prazdniny"]) {
+  date = date.toLocaleDateString('en-UK', { month: '2-digit', day: '2-digit' })
+
+  for (let range in info["prazdniny"]) {
     let [start, end] = range.split('-')
     if (isDateInRange(date, start, end)) {
-      return nasesviatky["prazdniny"][range]
+      return info["prazdniny"][range]
     }
   }
   return undefined
 }
+
 //Neviem jak to funguje AI
 const isDateInRange = (date, start, end) => {
   const [day, month] = date.split('/').map(Number)
@@ -116,42 +135,55 @@ const isDateInRange = (date, start, end) => {
 }
 
 // Vygeneruj Array s objektami pre kazdy den v roku s datumom, cislom dna v roku, nazvom dna, nazvom mesiaca a cislom tyzdna v roku
-for (let day = 1 - pocetDniDoZadu; day <= dayCount() + pocetDniDoPredu; day++) {
-  calendarArray.push({
-    //Rok
-    year: getYearNumber(new Date(year, 0, day)),
+export const array = (sviatky) => {
+  let calendarArray = []
 
-    //Cislo dna v roku
-    dayNumber: getDayNumber(new Date(year, 0, day)),
+  for (let day = 1 - pocetDniDoZadu; day <= dayCount() + pocetDniDoPredu; day++) {
+    calendarArray.push({
+      //Rok
+      year: getYearNumber(new Date(year, 0, day)),
 
-    //Datum
-    date: new Date(year, 0, day).toLocaleDateString('us-US', {
-      day: 'numeric'
-    }),
+      //Cislo dna v roku
+      dayNumber: getDayNumber(new Date(year, 0, day)),
 
-    //Den v tyzdni
-    dayName: new Date(year, 0, day)
-      .toLocaleDateString('sk-SK', { weekday: 'long' })
-      .replace(/^\p{L}/u, (c) => c.toUpperCase()),
+      //Datum
+      date: new Date(year, 0, day).toLocaleDateString('us-US', {
+        day: 'numeric'
+      }),
 
-    //Mesiac
-    month: getMonthName(new Date(year, 0, day)),
+      //Den v tyzdni
+      dayName: new Date(year, 0, day)
+        .toLocaleDateString('sk-SK', { weekday: 'long' })
+        .replace(/^\p{L}/u, (c) => c.toUpperCase()),
 
-    //Vychod, stred, zapad slnka
-    sun: slnkoCalc(new Date(year, 0, day)).join(' '),
+      //Mesiac
+      month: getMonthName(new Date(year, 0, day)),
 
-    //Cislo tyzdna v roku
-    week: getWeekNumber(new Date(year, 0, day)),
+      //Vychod, stred, zapad slnka
+      sun: slnkoCalc(new Date(year, 0, day)).join(' '),
 
-    //Meniny
-    nameDay: namedays[new Date(year, 0, day).toLocaleDateString('en-UK', { month: '2-digit', day: '2-digit' })],
-    
-    //Nase sviatky (meniny, narodeniny, medz. dni atd.)
-    naseSviatky: getNaseSviatky(new Date(year, 0, day).toLocaleDateString('en-UK', { month: '2-digit', day: '2-digit' })),
+      //Cislo tyzdna v roku
+      week: getWeekNumber(new Date(year, 0, day)),
 
-    //Prazdniny
-    holidays: getHolidays(new Date(year, 0, day).toLocaleDateString('en-UK', { month: '2-digit', day: '2-digit' }))
-  })
+      //Meniny
+      nameDay: namedays[new Date(year, 0, day).toLocaleDateString('en-UK', { month: '2-digit', day: '2-digit' })],
+      
+      //Prazdniny
+      holidays: getHolidays(new Date(year, 0, day)),
+
+      //Data
+      data: getData(new Date(year, 0, day)),
+
+      //Nase sviatky (meniny, narodeniny atd.)
+      naseSviatky: getSviatky(new Date(year, 0, day), sviatky),
+    })
+  }
+
+  console.log(calendarArray)
+
+  return calendarArray
 }
 
-console.log(calendarArray)
+const calendarArray = ref(array())
+
+export { calendarArray }

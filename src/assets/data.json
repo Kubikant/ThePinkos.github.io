@@ -1,0 +1,45 @@
+{
+"statneSviatky": {
+    "01/01": "Deň vzniku Slovenkej republiky",
+    "06/01": "Zjavenie Pána (Traja králi)",
+    "18/04": "Veľký piatok",
+    "21/04": "Veľkonočný pondelok",
+    "01/05": "Sviatok práce",
+    "08/05": "Deň víťažstva nad fašizmom",
+    "05/07": "Sviatok svätého Cyrila a Metoda",
+    "29/08": "Výročie SNP",
+    "01/09": "Deň Ústavy Slovenskej republiky",
+    "15/09": "Sedembolestná Panna Mária",
+    "01/11": "Sviatok všetkých svätých",
+    "17/11": "Deň boja za slobodu a demokraciu",
+    "24/12": "Štedrý deň",
+    "25/12": "Prvý sviatok vianočný",
+    "26/12": "Druhý sviatok vianočný"
+},
+"medzDni": {
+    "08/03": "Medzinárodný deň žien",
+    "28/03": "Deň učiteľov",
+    "12/05": "Deň matiek",
+    "01/06": "Medzinárodný deň detí",
+    "16/06": "Deň otcov",
+    "19/11": "Medzinárodný deň mužov"
+},
+"slnovraty": {
+    "20/03": "Jarná rovnodennosť",
+    "30/03": "Zmena času (2:00-3:00)",
+    "21/06": "Letný slnovrat",
+    "23/09": "Jesenná rovnodennosť",
+    "26/10": "Zmena času (3:00-2:00)",
+    "21/12": "Zimný slnovrat"
+},
+"prazdniny": {
+    "01/01-07/01": "Vianočné prázdniny",
+    "17/02-21/02": "Jarné prázdniny (KE, PO)",
+    "24/02-28/02": "Jarné prázdniny (BA, NR, TN)",
+    "03/03-07/03": "Jarné prázdniny (BB, ZA, TN)",
+    "17/04-22/04": "Veľkonočné prázdniny",
+    "30/06-28/08": "Letné prázdniny",    
+    "30/10-31/10": "Jesenné prázdniny",    
+    "22/12-31/12": "Vianočné prázdniny"
+}
+}

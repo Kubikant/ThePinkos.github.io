@@ -1,9 +1,9 @@
 <script setup>
-defineProps(['cisloDna', 'mesiac', 'rok', 'menoDna', 'index', 'meniny', 'denVRoku', 'slnko', 'naseSviatky', 'prazdniny'])
+defineProps(['cisloDna', 'mesiac', 'rok', 'menoDna', 'index', 'meniny', 'denVRoku', 'slnko', 'naseSviatky', 'prazdniny','sviatky'])
 </script>
 <template>
   <div class="den">
-    <div class="datum" :style="{ borderBottom: index === 6 ? 'white 1mm solid' : undefined, backgroundColor: naseSviatky?.statneSviatky !== undefined ? '#e21414' : undefined }">
+    <div class="datum" :style="{ borderBottom: index === 6 ? 'white 1mm solid' : undefined, backgroundColor: sviatky?.statneSviatky !== undefined ? '#e21414' : undefined }">
       {{ cisloDna }}
     </div>
     <div class="info" :style="{ borderBottom: index === 5 ? '0' : undefined }">
@@ -14,7 +14,7 @@ defineProps(['cisloDna', 'mesiac', 'rok', 'menoDna', 'index', 'meniny', 'denVRok
       <div class="prazdniny">{{ prazdniny }}</div>
       <div class="naseSviatky">
         <div class="statneSviatky">
-          {{ naseSviatky?.statneSviatky }}
+          {{ sviatky?.statneSviatky }}
         </div>
         <div class="vyrociaSvadby">
           {{ naseSviatky?.vyrociaSvadby }}
@@ -26,10 +26,10 @@ defineProps(['cisloDna', 'mesiac', 'rok', 'menoDna', 'index', 'meniny', 'denVRok
           {{ naseSviatky?.narodeninyMeniny }}
         </div>
         <div class="medzDni">
-          {{ naseSviatky?.medzDni }}
+          {{ sviatky?.medzDni }}
         </div>
         <div class="slnovraty">
-          {{ naseSviatky?.slnovraty }}
+          {{ sviatky?.slnovraty }}
         </div>
       </div>
     </div>
