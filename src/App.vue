@@ -1,10 +1,9 @@
 <script setup>
 import { ref, watch, onMounted } from 'vue'
-import { RouterView, useRoute } from 'vue-router'
+import { RouterView } from 'vue-router'
 import { calendarArray, array } from '@/assets/logika.js'
 import debounce from 'lodash/debounce'
 
-const route = useRoute()
 const viewKey = ref(0)
 const defaultJsonContent = `{
   "narodeninyMeniny": {
@@ -22,6 +21,18 @@ const jsonContent = ref(localStorage.getItem('jsonContent') || defaultJsonConten
 
 const printView = () => {
   window.print()
+}
+
+const removeAllImportedImages = () => {
+  const keysToRemove = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key.startsWith('image')) {
+      keysToRemove.push(key);
+    }
+  }
+  keysToRemove.forEach(key => localStorage.removeItem(key));
+  viewKey.value++;
 }
 
 const handleFileImport = (event) => {
@@ -54,6 +65,16 @@ const updateCalendarArray = debounce((newContent) => {
   }
 }, 300)
 
+const downloadJson = () => {
+  const blob = new Blob([jsonContent.value], { type: 'application/json' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = 'calendar.json'
+  a.click()
+  URL.revokeObjectURL(url)
+}
+
 watch(jsonContent, (newContent) => {
   localStorage.setItem('jsonContent', newContent)
   updateCalendarArray(newContent)
@@ -67,12 +88,21 @@ onMounted(() => {
 <template>
   <div class="head">
     <h1>KALENDÁR!</h1>
-    <button v-if="route.path !== '/'" @click="printView">Vytlač</button>
     <input type="file" @change="handleFileImport" accept=".json" class="file-input" id="file-input" />
-    <label for="file-input" class="custom-file-input">Vyberte JSON súbor</label>
-    <button @click="resetToDefault" class="custom-file-input">Resetovať JSON</button>
+    <div class="buttons">
+      <div class="button-row">
+        <label for="file-input" class="button">Vybrať JSON</label>
+        <button @click="resetToDefault" class="button">Resetovať JSON</button>
+        <button @click="downloadJson" class="button">Stiahnuť JSON</button>
+        <button @click="removeAllImportedImages" class="button">Odstrániť obrázky</button>
+      </div>
+    </div>
+    
     <div class="editor">
       <textarea v-model="jsonContent" rows="10" cols="50" class="json-editor"></textarea>
+    </div>
+    <div class="button-row">
+        <button @click="printView" class="button">Vytlačiť Kalendár</button>
     </div>
   </div>
 
@@ -90,39 +120,44 @@ onMounted(() => {
   border: 2px solid #ccc;
 }
 
-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
+h1 {
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 400%;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.button {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  border: 2px solid black;
+  color: black;
   padding: 10px 20px;
   margin: 10px;
   cursor: pointer;
-  border-radius: 5px;
   font-size: 16px;
+  width: 200px;
+  text-align: center;
+  box-sizing: border-box;
 }
 
-button:hover {
-  background-color: #0056b3;
+.button:hover {
+  background-color: #e0e0e0;
 }
 
 .file-input {
   display: none;
-}
-
-.custom-file-input {
-  display: inline-block;
-  padding: 10px;
-  margin: 10px;
-  cursor: pointer;
-  border: 2px solid black;
-  border-radius: 5px;
-  background-color: #f0f0f0;
-  font-size: 16px;
-  color: black;
-}
-
-.custom-file-input:hover {
-  background-color: #e0e0e0;
 }
 
 .editor {
@@ -131,8 +166,8 @@ button:hover {
 }
 
 .json-editor {
-  width: 80%;
-  max-width: 800px;
+  width: 600px;
+  max-width: 80%;
   height: 300px;
   padding: 10px;
   border: 2px solid #ccc;

@@ -24,7 +24,7 @@ const days = ref(calendarArray)
     }"
   >
     <!-- Fotka -->
-    <fotkaComponent />
+    <fotkaComponent :uniqueKey="'image' + strana" />
 
     <!-- Informacie o tyzdni -->
     <div class="tyzden_info">
