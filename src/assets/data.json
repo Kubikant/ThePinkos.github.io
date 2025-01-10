@@ -19,18 +19,19 @@
 "medzDni": {
     "08/03": "Medzinárodný deň žien",
     "28/03": "Deň učiteľov",
-    "12/05": "Deň matiek",
+    "11/05": "Deň matiek",
     "01/06": "Medzinárodný deň detí",
-    "16/06": "Deň otcov",
+    "15/06": "Deň otcov",
+    "27/07": "Deň rodičov",
     "19/11": "Medzinárodný deň mužov"
 },
 "slnovraty": {
-    "20/03": "Jarná rovnodennosť",
+    "20/03": "Prvý jarný deň",
     "30/03": "Zmena času (2:00-3:00)",
-    "21/06": "Letný slnovrat",
-    "23/09": "Jesenná rovnodennosť",
+    "21/06": "Prvý letný deň",
+    "22/09": "Prvý jesenný deň",
     "26/10": "Zmena času (3:00-2:00)",
-    "21/12": "Zimný slnovrat"
+    "21/12": "Prvý zimný deň"
 },
 "prazdniny": {
     "01/01-07/01": "Vianočné prázdniny",
