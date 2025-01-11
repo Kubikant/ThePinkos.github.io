@@ -1,10 +1,17 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watch, defineEmits } from 'vue'
 import { calendarArray } from '@/assets/logika.js'
 import denComponent from './stranaComponents/denComponent.vue'
 import fotkaComponent from './stranaComponents/fotkaComponent.vue'
 
 const days = ref(calendarArray)
+const props = defineProps(['selectedImages', 'viewKey'])
+const emit = defineEmits(['updateViewKey'])
+
+watch(() => props.selectedImages, (newImages) => {
+  console.log('Selected images updated:', newImages)
+  emit('updateViewKey') // Emit the event to update the viewKey
+})
 </script>
 
 <template>
@@ -24,7 +31,7 @@ const days = ref(calendarArray)
     }"
   >
     <!-- Fotka -->
-    <fotkaComponent :uniqueKey="'image' + strana" />
+    <fotkaComponent :uniqueKey="strana.toString()" :image="props.selectedImages.find(img => img.name === `${strana}.jpg`)?.url || '/default.jpeg'" :viewKey="props.viewKey" @updateViewKey="emit('updateViewKey')" />
 
     <!-- Informacie o tyzdni -->
     <div class="tyzden_info">
@@ -43,6 +50,7 @@ const days = ref(calendarArray)
       :denVRoku="day.dayNumber"
       :menoDna="day.dayName"
       :slnko="day.sun"
+      :fazyMesiaca="day.moonPhase"
       :meniny="day.nameDay"
       :naseSviatky="day.naseSviatky"
       :sviatky="day.data"

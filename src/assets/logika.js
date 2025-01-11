@@ -2,6 +2,7 @@ import { ref } from 'vue'
 import SunCalc from 'suncalc'
 import namedays from './meniny.json'
 import info from './data.json'
+import moonPhases from './moonPhases/phases.json'
 
 const year = 2025
 
@@ -53,8 +54,8 @@ const getMonthName = (date) => {
 
 //Zisti vychod, stred, zapad slnka
 const slnkoCalc = (date) => {
-  var zemSirka = 49.2231
-  var zemDlzka = 18.7394
+  const zemSirka = 49.2231
+  const zemDlzka = 18.7394
 
   //Zapise datum dna
   const den = new Date(date)
@@ -76,6 +77,27 @@ const slnkoCalc = (date) => {
   const sunset = formatTime(sunTimes.sunset)
 
   return [sunrise, solarNoon, sunset]
+}
+
+const getMoonPhase = (d, moonPhases) => {
+  const date = d.toLocaleDateString('en-CA', {
+    timeZone: 'Europe/Bratislava'
+  })
+
+  let emoji
+
+  for (let phase of moonPhases) {
+    if (phase.Date.split('T')[0] === date) {
+      switch (phase.Phase) {
+        case (0): emoji = "🌑"; break
+        case (1): emoji = "🌓"; break
+        case (2): emoji = "🌕"; break
+        case (3): emoji = "🌗"; break
+      }
+      return phase.Date.split('T')[1].slice(0, 5) + " " + emoji
+    }
+  }
+  return undefined
 }
 
 //Vrati sviatky v ten den
@@ -161,6 +183,9 @@ export const array = (sviatky) => {
 
       //Vychod, stred, zapad slnka
       sun: slnkoCalc(new Date(year, 0, day)).join(' '),
+
+      //Fazy mesiaca
+      moonPhase: getMoonPhase(new Date(year, 0, day), moonPhases),
 
       //Cislo tyzdna v roku
       week: getWeekNumber(new Date(year, 0, day)),

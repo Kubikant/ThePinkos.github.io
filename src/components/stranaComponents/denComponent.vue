@@ -1,15 +1,16 @@
 <script setup>
-defineProps(['cisloDna', 'mesiac', 'rok', 'menoDna', 'index', 'meniny', 'denVRoku', 'slnko', 'naseSviatky', 'prazdniny','sviatky'])
+defineProps(['cisloDna', 'mesiac', 'rok', 'menoDna', 'index', 'meniny', 'denVRoku', 'slnko', 'fazyMesiaca', 'naseSviatky', 'prazdniny','sviatky'])
 </script>
 <template>
   <div class="den">
-    <div class="datum" :style="{ borderBottom: index === 6 ? 'white 1mm solid' : undefined, backgroundColor: sviatky?.statneSviatky !== undefined ? '#e21414' : undefined }">
+    <div class="datum" :style="{ backgroundColor: sviatky?.statneSviatky !== undefined ? '#e21414' : undefined }">
       {{ cisloDna }}
     </div>
     <div class="info" :style="{ borderBottom: index === 5 ? '0' : undefined }">
       <div class="menoDna">{{ menoDna }}</div>
       <div class="meniny">{{ meniny }}</div>
       <div class="denVRoku">{{ denVRoku }}</div>
+      <div class="fazyMesiaca">{{ fazyMesiaca }}</div>
       <div class="slnko">{{ slnko }}</div>
       <div class="prazdniny">{{ prazdniny }}</div>
       <div class="naseSviatky">
@@ -44,7 +45,7 @@ defineProps(['cisloDna', 'mesiac', 'rok', 'menoDna', 'index', 'meniny', 'denVRok
 }
 
 .vikend .info {
-  border-bottom: 1mm solid #00b050;
+  box-shadow: 0 1mm 0 0 #00b050;
   border-top: 1mm solid #00b050;
   border-right: 1mm solid #00b050;
   background-color: #e2efda;
@@ -87,8 +88,8 @@ defineProps(['cisloDna', 'mesiac', 'rok', 'menoDna', 'index', 'meniny', 'denVRok
 }
 .menoDna {
   color: #313131;
-  padding-top: 0.24em;
-  padding-left: 0.2em;
+  padding-top: 0.24rem;
+  padding-left: 0.2rem;
   font-size: 172%;
   font-weight: 700;
 }
@@ -107,6 +108,21 @@ defineProps(['cisloDna', 'mesiac', 'rok', 'menoDna', 'index', 'meniny', 'denVRok
 
   grid-row: 2;
   grid-column: 1;
+}
+.fazyMesiaca {
+  grid-row: 3;
+  grid-column: 2;
+
+  margin: 0 0mm 0.5mm 0;
+  padding: 0 0mm 0 1.5mm;
+
+  height: 1rem;
+  border-radius: 1mm;
+
+  font-size: 120%;
+
+  align-self: center;
+  justify-self: right;
 }
 .slnko {
   display: grid;

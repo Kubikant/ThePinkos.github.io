@@ -12,12 +12,16 @@ export default {
     uniqueKey: {
       type: String,
       required: true
+    },
+    image: {
+      type: String,
+      default: '/default.jpeg'
     }
   },
   data() {
     return {
       defaultImage: '/default.jpeg',
-      imageSrc: localStorage.getItem(this.uniqueKey) || '/default.jpeg'
+      imageSrc: this.image
     };
   },
   computed: {
@@ -31,24 +35,28 @@ export default {
     },
     handleFileChange(event) {
       const file = event.target.files[0];
-      if (file && file.type.startsWith('image/')) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          this.imageSrc = e.target.result;
-          localStorage.setItem(this.uniqueKey, e.target.result);
-        };
-        reader.readAsDataURL(file);
+      if (this.isValidImageFile(file)) {
+        this.readImageFile(file);
       } else {
         console.log('Please select an image file.');
       }
     },
+    isValidImageFile(file) {
+      return file && file.type.startsWith('image/');
+    },
+    readImageFile(file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.updateImageSrc(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    },
+    updateImageSrc(src) {
+      this.imageSrc = src;
+    },
     resetImage() {
       this.imageSrc = this.defaultImage;
-      localStorage.removeItem(this.uniqueKey);
     }
-  },
-  created() {
-    this.imageSrc = localStorage.getItem(this.uniqueKey) || this.defaultImage;
   }
 }
 </script>

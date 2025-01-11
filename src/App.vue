@@ -18,21 +18,10 @@ const defaultJsonContent = `{
   }
 }`
 const jsonContent = ref(localStorage.getItem('jsonContent') || defaultJsonContent)
+const selectedImages = ref([])
 
 const printView = () => {
   window.print()
-}
-
-const removeAllImportedImages = () => {
-  const keysToRemove = [];
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    if (key.startsWith('image')) {
-      keysToRemove.push(key);
-    }
-  }
-  keysToRemove.forEach(key => localStorage.removeItem(key));
-  viewKey.value++;
 }
 
 const handleFileImport = (event) => {
@@ -47,6 +36,16 @@ const handleFileImport = (event) => {
     }
     reader.readAsText(file)
   }
+}
+
+const handleImageImport = (event) => {
+  const files = Array.from(event.target.files)
+  const newImages = files.map((file) => ({
+    name: file.name,
+    url: URL.createObjectURL(file)
+  }))
+  selectedImages.value = [...selectedImages.value, ...newImages]
+  viewKey.value++
 }
 
 const resetToDefault = () => {
@@ -89,12 +88,13 @@ onMounted(() => {
   <div class="head">
     <h1>KALENDÁR!</h1>
     <input type="file" @change="handleFileImport" accept=".json" class="file-input" id="file-input" />
+    <input type="file" @change="handleImageImport" accept="image/*" multiple class="file-input" id="image-input" />
     <div class="buttons">
       <div class="button-row">
         <label for="file-input" class="button">Vybrať JSON</label>
+        <label for="image-input" class="button">Vybrať Obrázky</label>
         <button @click="resetToDefault" class="button">Resetovať JSON</button>
         <button @click="downloadJson" class="button">Stiahnuť JSON</button>
-        <button @click="removeAllImportedImages" class="button">Odstrániť obrázky</button>
       </div>
     </div>
     
@@ -107,7 +107,7 @@ onMounted(() => {
   </div>
 
   <main>
-    <RouterView :key="viewKey" />
+    <RouterView :key="viewKey" :selectedImages="selectedImages" @updateViewKey="viewKey++" />
   </main>
 </template>
 

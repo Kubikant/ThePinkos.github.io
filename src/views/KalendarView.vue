@@ -1,10 +1,13 @@
 <script setup>
+import { defineProps } from 'vue'
 import stranaComponent from '@/components/stranaComponent.vue'
+
+const props = defineProps(['selectedImages'])
 </script>
 
 <template>
   <div class="kalendar">
-    <stranaComponent />
+    <stranaComponent :selectedImages="props.selectedImages" />
   </div>
 </template>
 
