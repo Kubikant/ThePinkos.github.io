@@ -40,11 +40,11 @@ const handleFileImport = (event) => {
 
 const handleImageImport = (event) => {
   const files = Array.from(event.target.files)
+  const invalidNames = []
   const newImages = files.map((file) => {
     const isValidName = /^[1-9]$|^[1-4][0-9]$|^5[0-5]$/.test(file.name.split('.')[0])
     if (!isValidName) {
-      alert(`Nesprávny názov: ${file.name}.
-Obrázky musia mat názov 1.jpg - 55.jpg`)
+      invalidNames.push(file.name)
       return null
     }
     return {
@@ -52,6 +52,12 @@ Obrázky musia mat názov 1.jpg - 55.jpg`)
       url: URL.createObjectURL(file)
     }
   }).filter(Boolean)
+
+  if (invalidNames.length > 0) {
+    alert(`Nesprávne názvy: ${invalidNames.join(', ')}.
+Obrázky musia mat názov 1.jpg - 55.jpg.`)
+  }
+
   selectedImages.value = [...selectedImages.value, ...newImages]
   viewKey.value++
 }
