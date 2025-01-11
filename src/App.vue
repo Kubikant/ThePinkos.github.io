@@ -40,10 +40,18 @@ const handleFileImport = (event) => {
 
 const handleImageImport = (event) => {
   const files = Array.from(event.target.files)
-  const newImages = files.map((file) => ({
-    name: file.name,
-    url: URL.createObjectURL(file)
-  }))
+  const newImages = files.map((file) => {
+    const isValidName = /^[1-9]$|^[1-4][0-9]$|^5[0-5]$/.test(file.name.split('.')[0])
+    if (!isValidName) {
+      alert(`Nesprávny názov: ${file.name}.
+Obrázky musia mat názov 1.jpg - 55.jpg`)
+      return null
+    }
+    return {
+      name: file.name,
+      url: URL.createObjectURL(file)
+    }
+  }).filter(Boolean)
   selectedImages.value = [...selectedImages.value, ...newImages]
   viewKey.value++
 }
@@ -92,9 +100,9 @@ onMounted(() => {
     <div class="buttons">
       <div class="button-row">
         <label for="file-input" class="button">Vybrať JSON</label>
-        <label for="image-input" class="button">Vybrať Obrázky</label>
         <button @click="resetToDefault" class="button">Resetovať JSON</button>
         <button @click="downloadJson" class="button">Stiahnuť JSON</button>
+        <label for="image-input" class="button">Vybrať Obrázky</label>
       </div>
     </div>
     
