@@ -20,10 +20,6 @@ const defaultJsonContent = `{
 const jsonContent = ref(localStorage.getItem('jsonContent') || defaultJsonContent)
 const selectedImages = ref([])
 
-const printView = () => {
-  window.print()
-}
-
 const handleFileImport = (event) => {
   const file = event.target.files[0]
   if (file) {
@@ -116,7 +112,7 @@ onMounted(() => {
       <textarea v-model="jsonContent" rows="10" cols="50" class="json-editor"></textarea>
     </div>
     <div class="button-row">
-        <button @click="printView" class="button">Vytlačiť Kalendár</button>
+      <button class="button" @click="generatePDF">Uložit ako PDF</button>
     </div>
   </div>
 

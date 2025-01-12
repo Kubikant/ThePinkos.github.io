@@ -8,7 +8,6 @@
     "08/05": "Deň víťažstva nad fašizmom",
     "05/07": "Sviatok svätého Cyrila a Metoda",
     "29/08": "Výročie SNP",
-    "01/09": "Deň Ústavy Slovenskej republiky",
     "15/09": "Sedembolestná Panna Mária",
     "01/11": "Sviatok všetkých svätých",
     "17/11": "Deň boja za slobodu a demokraciu",
@@ -23,18 +22,21 @@
     "01/06": "Medzinárodný deň detí",
     "15/06": "Deň otcov",
     "27/07": "Deň rodičov",
-    "02/11": "Pamiatka zosnulých",
     "19/11": "Medzinárodný deň mužov"
 },
 "slnovraty": {
     "31/01": "Odovzdávanie polročných vysvedčení",
     "20/03": "Prvý jarný deň",
     "30/03": "Zmena času (2:00-3:00)",
+    "17/04": "Zelený štvrtok",
     "19/04": "Biela sobota",
     "20/04": "Veľkonočná nedeľa",
     "21/06": "Prvý letný deň",
+    "27/06": "Koniec školského roka",
+    "01/09": "Začiatok školského roka",
     "22/09": "Prvý jesenný deň",
     "26/10": "Zmena času (3:00-2:00)",
+    "02/11": "Pamiatka zosnulých",
     "21/12": "Prvý zimný deň"
 },
 "prazdniny": {
