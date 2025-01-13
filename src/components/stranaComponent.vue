@@ -25,9 +25,7 @@ watch(() => props.selectedImages, (newImages) => {
     :key="strana"
     :style="{
       gridColumn: strana <= 27 ? 1 : 2,
-      gridRow: strana <= 27 ? strana + 1 : strana - 27,
-      borderRight: strana <= 27 ? '1px dotted #b4b4b4' : 'none',
-      borderLeft: strana > 27 ? '1px dotted #b4b4b4' : 'none'
+      gridRow: strana <= 27 ? strana + 1 : strana - 27
     }"
   >
     <!-- Fotka -->
@@ -38,7 +36,7 @@ watch(() => props.selectedImages, (newImages) => {
       <div class="mesiacARok">
         {{ days[(strana - 1) * 7].month }} {{ days[(strana - 1) * 7].year }}
       </div>
-      <div class="cisloTyzdna">{{ days[(strana - 1) * 7].week }}. týždeň</div>
+      <div class="cisloTyzdna">{{ days[(strana - 1) * 7].week }}. Hét</div>
     </div>
     <!-- Dni -->
     <denComponent

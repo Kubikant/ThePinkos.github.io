@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import SunCalc from 'suncalc'
-import namedays from './meniny.json'
+import namedays from './meninyHU.json'
 import info from './data.json'
 import moonPhases from './moonPhases/phases.json'
 
@@ -46,8 +46,8 @@ const getMonthName = (date) => {
   let monday = new Date(date.setDate(date.getDate() - (date.getDay() || 7) + 1))
   let sunday = new Date(date.setDate(date.getDate() + (7 - date.getDay())))
 
-  const firstMonth = monday.toLocaleDateString('sk-SK', { month: 'long' }).replace(/^\w/, (c) => c.toUpperCase())
-  const lastMonth = sunday.toLocaleDateString('sk-SK', { month: 'long' }).replace(/^\w/, (c) => c.toUpperCase())
+  const firstMonth = monday.toLocaleDateString('hu-HU', { month: 'long' }).replace(/^\w/, (c) => c.toUpperCase())
+  const lastMonth = sunday.toLocaleDateString('hu-HU', { month: 'long' }).replace(/^\w/, (c) => c.toUpperCase())
 
   return firstMonth !== lastMonth ? `${firstMonth.substring(0, 3)}/${lastMonth}` : firstMonth
 }
@@ -175,7 +175,7 @@ export const array = (sviatky) => {
 
       //Den v tyzdni
       dayName: new Date(year, 0, day)
-        .toLocaleDateString('sk-SK', { weekday: 'long' })
+        .toLocaleDateString('hu-HU', { weekday: 'long' })
         .replace(/^\p{L}/u, (c) => c.toUpperCase()),
 
       //Mesiac
